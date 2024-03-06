@@ -16,5 +16,5 @@ defmodule BaserowEx do
     :world
   end
 
-  defdelegate call, to: BaserowEx.Workspaces.ListWorkspaces, as: :call
+  defdelegate list_workspaces, to: BaserowEx.Workspaces.ListWorkspaces, as: :call
 end
