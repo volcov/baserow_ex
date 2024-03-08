@@ -3,18 +3,6 @@ defmodule BaserowEx do
   Documentation for `BaserowEx`.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> BaserowEx.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
-
-  defdelegate list_workspaces, to: BaserowEx.Workspaces.ListWorkspaces, as: :call
+  defdelegate token_auth(email, password, opts \\ []), to: BaserowEx.User.TokenAuth, as: :call
+  defdelegate list_workspaces(opts \\ []), to: BaserowEx.Workspaces.ListWorkspaces, as: :call
 end

@@ -5,4 +5,5 @@ defmodule BaserowEx.HTTPClient do
 
   @callback build_client(any()) :: client()
   @callback get(client(), uri(), opts()) :: {:ok, any()} | {:error, any()}
+  @callback post(client(), uri(), any(), opts()) :: {:ok, any()} | {:error, any()}
 end
