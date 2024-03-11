@@ -20,16 +20,6 @@ defmodule BaserowEx.User.TokenAuth.InputParams do
     %__MODULE__{}
     |> cast(attrs, @fields)
     |> validate_required(@required_fields)
-  end
-
-  @spec validate_params(map()) :: {:error, Ecto.Changeset.t()} | {:ok, any()}
-  def validate_params(params) do
-    case changeset(params) do
-      %Ecto.Changeset{valid?: false} = changeset ->
-        {:error, changeset}
-
-      %Ecto.Changeset{valid?: true, changes: changes} ->
-        {:ok, changes}
-    end
+    |> apply_action(:validate_params)
   end
 end

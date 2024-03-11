@@ -13,13 +13,9 @@ defmodule BaserowEx.User.TokenAuth do
       password: password
     }
 
-    with {:ok, valid_params} <- InputParams.validate_params(params),
-         {:ok, %{body: body}} <- post(valid_params, opts),
-         {:ok, valid_response} <- ResponseParams.validate_params(body) do
-      %ResponseParams{
-        access_token: valid_response.access_token,
-        refresh_token: valid_response.refresh_token
-      }
+    with {:ok, valid_params} <- InputParams.changeset(params),
+         {:ok, %{body: body}} <- post(valid_params, opts) do
+      ResponseParams.changeset(body)
     end
   end
 
@@ -28,8 +24,9 @@ defmodule BaserowEx.User.TokenAuth do
   end
 
   defp post(body, opts) do
-    @http_client.post(
-      client(opts),
+    opts
+    |> client()
+    |> @http_client.post(
       @api_uri,
       body,
       []
