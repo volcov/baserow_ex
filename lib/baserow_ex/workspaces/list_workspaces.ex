@@ -1,4 +1,6 @@
 defmodule BaserowEx.Workspaces.ListWorkspaces do
+  @moduledoc false
+
   @http_client Application.compile_env(:baserow_ex, :http_client, BaserowEx.HTTPClient.Tesla)
   def call(opts \\ []) do
     raise("not implemented")

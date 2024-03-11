@@ -1,4 +1,6 @@
 defmodule BaserowEx.User.TokenAuth do
+  @moduledoc false
+
   alias BaserowEx.User.TokenAuth.InputParams
   alias BaserowEx.User.TokenAuth.ResponseParams
 

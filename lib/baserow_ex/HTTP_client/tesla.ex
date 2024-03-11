@@ -1,4 +1,6 @@
 defmodule BaserowEx.HTTPClient.Tesla do
+  @moduledoc false
+
   @behaviour BaserowEx.HTTPClient
 
   @impl BaserowEx.HTTPClient

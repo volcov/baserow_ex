@@ -1,4 +1,6 @@
 defmodule BaserowEx.HTTPClient do
+  @moduledoc false
+
   @type client :: any()
   @type uri :: String.t() | URI.t()
   @type opts :: Keyword.t()

@@ -1,4 +1,6 @@
 defmodule BaserowEx.User.TokenAuth.InputParams do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 
