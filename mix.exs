@@ -27,7 +27,8 @@ defmodule BaserowEx.MixProject do
       {:ecto, "~> 3.10"},
       {:jason, "~> 1.4"},
       {:tesla, "~> 1.4"},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 end
