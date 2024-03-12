@@ -7,7 +7,6 @@ defmodule BaserowEx.User.TokenAuth do
   alias BaserowEx.User.TokenAuth.InputParams
   alias BaserowEx.User.TokenAuth.ResponseParams
 
-  @http_client Application.compile_env(:baserow_ex, :http_client, BaserowEx.HTTPClient.Tesla)
   @api_uri "https://api.baserow.io/api/user/token-auth/"
 
   @spec call(String.t(), String.t(), Keyword.t()) ::
@@ -32,13 +31,17 @@ defmodule BaserowEx.User.TokenAuth do
   end
 
   defp client(opts) do
-    @http_client.build_client(opts)
+    http_client().build_client(opts)
+  end
+
+  defp http_client() do
+    Application.get_env(:baserow_ex, :http_client, BaserowEx.HTTPClient.Tesla)
   end
 
   defp post(body, opts) do
     opts
     |> client()
-    |> @http_client.post(
+    |> http_client().post(
       @api_uri,
       body,
       []
