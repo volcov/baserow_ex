@@ -9,6 +9,8 @@ defmodule BaserowEx.HTTPClient.Tesla do
       Tesla.Middleware.JSON
     ]
 
+    IO.puts("BUILD CLIENT REAL")
+
     Tesla.client(middleware)
   end
 
@@ -19,6 +21,7 @@ defmodule BaserowEx.HTTPClient.Tesla do
 
   @impl BaserowEx.HTTPClient
   def post(client, uri, body, opts) do
+    IO.puts("POST REAL")
     Tesla.post(client, uri, body, opts)
   end
 end
