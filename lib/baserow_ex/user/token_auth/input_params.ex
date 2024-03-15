@@ -1,6 +1,8 @@
 defmodule BaserowEx.User.TokenAuth.InputParams do
   @moduledoc false
 
+  @mail_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -22,6 +24,7 @@ defmodule BaserowEx.User.TokenAuth.InputParams do
     %__MODULE__{}
     |> cast(attrs, @fields)
     |> validate_required(@required_fields)
+    |> validate_format(:email, @mail_regex, message: "invalid_email")
     |> apply_action(:validate_params)
   end
 end

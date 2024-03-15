@@ -25,7 +25,11 @@ defmodule BaserowEx.User.TokenAuthTest do
               %BaserowEx.User.TokenAuth.ResponseParams{
                 access_token: "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkN",
                 refresh_token: "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkB"
-              }} == BaserowEx.User.TokenAuth.call("email@email", "password", [])
+              }} == BaserowEx.User.TokenAuth.call("email@email.com", "password", [])
+    end
+
+    test "failure: receives an error when gives wrong params" do
+      assert {:error, :invalid_email} == BaserowEx.User.TokenAuth.call("teste", "password", [])
     end
   end
 end

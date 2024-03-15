@@ -10,7 +10,7 @@ defmodule BaserowEx.User.TokenAuth do
   @api_uri "https://api.baserow.io/api/user/token-auth/"
 
   @spec call(String.t(), String.t(), Keyword.t()) ::
-          {:error, any()} | BaserowEx.User.TokenAuth.ResponseParams.t()
+          {:error, any()} | {:ok, BaserowEx.User.TokenAuth.ResponseParams.t()}
   def call(email, password, opts) do
     params = %{
       email: email,
@@ -20,6 +20,12 @@ defmodule BaserowEx.User.TokenAuth do
     with {:ok, valid_params} <- InputParams.changeset(params),
          {:ok, %{body: body}} <- post(map_body(valid_params), opts) do
       ResponseParams.changeset(body)
+    else
+      {:error, %Ecto.Changeset{} = _changeset} ->
+        {:error, :invalid_email}
+
+      _ ->
+        {:error, :unknown_error}
     end
   end
 
