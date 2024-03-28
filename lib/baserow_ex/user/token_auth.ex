@@ -10,7 +10,7 @@ defmodule BaserowEx.User.TokenAuth do
   @api_uri "https://api.baserow.io/api/user/token-auth/"
 
   @spec call(String.t(), String.t(), Keyword.t()) ::
-          {:error, any()} | {:ok, BaserowEx.User.TokenAuth.ResponseParams.t()}
+          {:error, any()} | {:ok, ResponseParams.t()}
   def call(email, password, opts) do
     params = %{
       email: email,
@@ -43,7 +43,7 @@ defmodule BaserowEx.User.TokenAuth do
     http_client().build_client(opts)
   end
 
-  defp http_client() do
+  defp http_client do
     Application.get_env(:baserow_ex, :http_client, BaserowEx.HTTPClient.Tesla)
   end
 

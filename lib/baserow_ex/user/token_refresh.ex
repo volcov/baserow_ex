@@ -54,7 +54,7 @@ defmodule BaserowEx.User.TokenRefresh do
     http_client().build_client(opts)
   end
 
-  defp http_client() do
+  defp http_client do
     Application.get_env(:baserow_ex, :http_client, BaserowEx.HTTPClient.Tesla)
   end
 end

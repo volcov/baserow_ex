@@ -3,6 +3,8 @@ defmodule BaserowEx.User.TokenVerifyTest do
 
   import Mox
 
+  alias BaserowEx.User.TokenVerify
+
   setup :verify_on_exit!
 
   describe "TokenVerify" do
@@ -20,7 +22,7 @@ defmodule BaserowEx.User.TokenVerifyTest do
          }}
       end)
 
-      assert BaserowEx.User.TokenVerify.call(
+      assert TokenVerify.call(
                "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkN",
                []
              )
@@ -40,7 +42,7 @@ defmodule BaserowEx.User.TokenVerifyTest do
          }}
       end)
 
-      refute BaserowEx.User.TokenVerify.call(
+      refute TokenVerify.call(
                "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkN",
                []
              )

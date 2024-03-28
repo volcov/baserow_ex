@@ -3,6 +3,8 @@ defmodule BaserowEx.User.TokenRefreshTest do
 
   import Mox
 
+  alias BaserowEx.User.TokenRefresh
+
   setup :verify_on_exit!
 
   describe "TokenRefresh" do
@@ -22,17 +24,17 @@ defmodule BaserowEx.User.TokenRefreshTest do
       end)
 
       assert {:ok,
-              %BaserowEx.User.TokenRefresh.ResponseParams{
+              %TokenRefresh.ResponseParams{
                 access_token: "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkN"
               }} ==
-               BaserowEx.User.TokenRefresh.call(
+               TokenRefresh.call(
                  "BlIjoicmVmcmVzaCIsImV4cCI6MTcxMTc2OTA1NSwiaWF0IjoxNzExMTY0MjU1LCJqdGkiOiJmZTd",
                  []
                )
     end
 
     test "failure: receives an error when gives wrong params" do
-      assert {:error, :wrong_input_data} == BaserowEx.User.TokenRefresh.call(123, [])
+      assert {:error, :wrong_input_data} == TokenRefresh.call(123, [])
     end
 
     test "failure: receives an error when token is expired" do
@@ -48,7 +50,7 @@ defmodule BaserowEx.User.TokenRefreshTest do
       end)
 
       assert {:error, :token_invalid_or_expired} ==
-               BaserowEx.User.TokenRefresh.call(
+               TokenRefresh.call(
                  "BlIjoicmVmcmVzaCIsImV4cCI6MTcxMTc2OTA1NSwiaWF0IjoxNzExMTY0MjU1LCJqdGkiOiJmZTd",
                  []
                )

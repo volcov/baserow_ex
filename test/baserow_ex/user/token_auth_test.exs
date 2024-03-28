@@ -3,6 +3,8 @@ defmodule BaserowEx.User.TokenAuthTest do
 
   import Mox
 
+  alias BaserowEx.User.TokenAuth
+
   setup :verify_on_exit!
 
   describe "TokenAuth" do
@@ -23,14 +25,14 @@ defmodule BaserowEx.User.TokenAuthTest do
       end)
 
       assert {:ok,
-              %BaserowEx.User.TokenAuth.ResponseParams{
+              %TokenAuth.ResponseParams{
                 access_token: "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkN",
                 refresh_token: "zEwMjU2MTYxLCJpYXQiOjE3MTAyNTU1NjEsImp0aSI6IjBkB"
-              }} == BaserowEx.User.TokenAuth.call("email@email.com", "password", [])
+              }} == TokenAuth.call("email@email.com", "password", [])
     end
 
     test "failure: receives an error when gives wrong params" do
-      assert {:error, :invalid_email} == BaserowEx.User.TokenAuth.call("teste", "password", [])
+      assert {:error, :invalid_email} == TokenAuth.call("teste", "password", [])
     end
 
     test "failure: receives an error when creds is invalid" do
@@ -46,7 +48,7 @@ defmodule BaserowEx.User.TokenAuthTest do
       end)
 
       assert {:error, :invalid_email_or_password} ==
-               BaserowEx.User.TokenAuth.call("email@email.com", "password", [])
+               TokenAuth.call("email@email.com", "password", [])
     end
   end
 end
