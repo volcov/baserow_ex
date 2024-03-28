@@ -18,9 +18,12 @@ defmodule BaserowEx.User.TokenAuth do
     }
 
     with {:ok, valid_params} <- InputParams.changeset(params),
-         {:ok, %{body: body}} <- post(map_body(valid_params), opts) do
+         {:ok, %{body: body, status: 200}} <- post(map_body(valid_params), opts) do
       ResponseParams.changeset(body)
     else
+      {:ok, %{status: 401}} ->
+        {:error, :invalid_email_or_password}
+
       {:error, %Ecto.Changeset{} = _changeset} ->
         {:error, :invalid_email}
 
