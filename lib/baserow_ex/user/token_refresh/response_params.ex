@@ -1,0 +1,25 @@
+defmodule BaserowEx.User.TokenRefresh.ResponseParams do
+  @moduledoc false
+
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  @type t() :: %{
+          access_token: String.t()
+        }
+
+  @primary_key false
+  @fields [:access_token]
+  @required_fields [:access_token]
+
+  embedded_schema do
+    field(:access_token, :string)
+  end
+
+  def changeset(attrs) do
+    %__MODULE__{}
+    |> cast(attrs, @fields)
+    |> validate_required(@required_fields)
+    |> apply_action(:validate_params)
+  end
+end
