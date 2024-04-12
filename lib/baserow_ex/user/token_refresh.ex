@@ -13,11 +13,12 @@ defmodule BaserowEx.User.TokenRefresh do
           {:ok, ResponseParams}
           | {:error, :token_invalid_or_expired}
           | {:error, :wrong_input_data}
-          | {:error, :unknow_error}
+          | {:error, :unknown_error}
   def call(refresh_token, opts) do
-    params = %{
-      refresh_token: refresh_token
-    }
+    params =
+      %{
+        refresh_token: refresh_token
+      }
 
     with {:ok, valid_params} <- InputParams.changeset(params),
          {:ok, %{body: body, status: 200}} <- post(map_body(valid_params), opts) do

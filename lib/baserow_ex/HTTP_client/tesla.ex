@@ -4,12 +4,20 @@ defmodule BaserowEx.HTTPClient.Tesla do
   @behaviour BaserowEx.HTTPClient
 
   @impl BaserowEx.HTTPClient
-  def build_client(_opts) do
-    middleware = [
+  def build_client(opts) do
+    default_middleware = [
       Tesla.Middleware.JSON
     ]
 
-    IO.puts("BUILD CLIENT REAL")
+    access_token = Keyword.get(opts, :access_token)
+
+    middleware =
+      if access_token do
+        default_middleware ++
+          [{Tesla.Middleware.Headers, [{"authorization", "JWT #{access_token}"}]}]
+      else
+        default_middleware
+      end
 
     Tesla.client(middleware)
   end
@@ -21,7 +29,6 @@ defmodule BaserowEx.HTTPClient.Tesla do
 
   @impl BaserowEx.HTTPClient
   def post(client, uri, body, opts) do
-    IO.puts("POST REAL")
     Tesla.post(client, uri, body, opts)
   end
 end
