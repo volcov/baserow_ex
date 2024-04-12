@@ -49,7 +49,6 @@ defmodule BaserowEx.Workspaces.ListWorkspaces do
   defp try_refresh(baserow_client) do
     case BaserowClient.try_refresh_token(baserow_client) do
       {:ok, refreshed_client} ->
-        IO.puts("CAI NO REFREHS")
         call(refreshed_client, [])
 
       _ ->

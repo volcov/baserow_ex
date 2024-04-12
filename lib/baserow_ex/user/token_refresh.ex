@@ -10,7 +10,7 @@ defmodule BaserowEx.User.TokenRefresh do
   @api_uri "https://api.baserow.io/api/user/token-refresh/"
 
   @spec call(String.t(), Keyword.t()) ::
-          {:ok, ResponseParams}
+          {:ok, ResponseParams.t()}
           | {:error, :token_invalid_or_expired}
           | {:error, :wrong_input_data}
           | {:error, :unknown_error}
