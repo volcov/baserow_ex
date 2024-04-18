@@ -32,7 +32,8 @@ defmodule BaserowEx.MixProject do
       {:tesla, "~> 1.4"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:mox, "~> 1.0", only: :test}
+      {:mox, "~> 1.0", only: :test},
+      {:ex_doc, "~> 0.14", only: :dev, runtime: false}
     ]
   end
 
