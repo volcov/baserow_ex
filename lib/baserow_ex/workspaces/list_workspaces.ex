@@ -1,11 +1,28 @@
 defmodule BaserowEx.Workspaces.ListWorkspaces do
-  @moduledoc false
+  @moduledoc """
+  This module is responsible for listing all workspaces of an authorized user, and will map them into a list of maps containing id and name
+  """
 
   alias BaserowEx.BaserowClient
   alias BaserowEx.Workspaces.ListWorkspaces.ResponseParams
 
   @api_uri "https://api.baserow.io/api/workspaces/"
 
+  @doc """
+  this function receives a BaserowEx client, and will make the call to the endpoint that lists the workspaces, managing the token session if necessary.
+
+  the return will be in the standard format of this library:
+  {:ok, BaserowClient.Client.t(), list()}
+
+  the client returned in the triple tuple must be used by subsequent calls from the application,
+  or even by other calls that are not from this module, this will guarantee session control
+
+  ## Example
+
+      iex> BaserowEx.Workspaces.ListWorkspaces.call(client)
+      {:ok, BaserowClient.Client.t(), [%ResponseParams{id: 0, name: "workspace_one"}]
+
+  """
   @spec call(BaserowClient.Client.t(), Keyword.t()) ::
           {:ok, BaserowClient.Client.t(), list(ResponseParams.t())}
           | {:error, :unknown_error}
