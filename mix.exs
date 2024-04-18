@@ -7,7 +7,10 @@ defmodule BaserowEx.MixProject do
       version: "0.1.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      source_url: "https://github.com/volcov/baserow_ex",
+      package: package()
     ]
   end
 
@@ -30,6 +33,17 @@ defmodule BaserowEx.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mox, "~> 1.0", only: :test}
+    ]
+  end
+
+  defp description() do
+    "An Elixir Library for interfacing Baserow Backend API"
+  end
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      links: %{"Github" => "https://github.com/volcov/baserow_ex"}
     ]
   end
 end
