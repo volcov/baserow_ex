@@ -14,7 +14,7 @@ BaserowEx was built to work with another API, the [Backend API](https://api.base
 
 The first factor that motivated the creation of this library was to have an interface that already returned to whoever was using it, response structures, errors, objects that talk directly to an Elixir application.
 
-But when starting to design the library, a second reason was born that could be a very interesting advantage, the "session" control of the API.
+When starting to design the library, a second reason was born that could be a very interesting advantage, the "session" control of the API.
 
 The authentication strategy used by Baserow is the acquisition of an `access_token` through `username` and `password`. When the token loses its validity, it is necessary to try to refresh the `access_token`, and when the `refresh_token` also becomes invalid, it will be necessary to call the first authentication again, to obtain a new pair of `access_token` and `refresh_token`
 
