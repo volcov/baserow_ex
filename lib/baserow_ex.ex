@@ -2,17 +2,15 @@ defmodule BaserowEx do
   @moduledoc """
   Documentation for `BaserowEx`.
   """
+  defdelegate client(username, password), to: BaserowEx.BaserowClient, as: :call
 
-  @doc """
-  Hello world.
+  defdelegate token_auth(email, password, opts \\ []), to: BaserowEx.User.TokenAuth, as: :call
 
-  ## Examples
+  defdelegate token_refresh(refresh_token, opts \\ []), to: BaserowEx.User.TokenRefresh, as: :call
 
-      iex> BaserowEx.hello()
-      :world
+  defdelegate token_verify(refresh_token, opts \\ []), to: BaserowEx.User.TokenVerify, as: :call
 
-  """
-  def hello do
-    :world
-  end
+  defdelegate list_workspaces(baserow_client, opts \\ []),
+    to: BaserowEx.Workspaces.ListWorkspaces,
+    as: :call
 end
