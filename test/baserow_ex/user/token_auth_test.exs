@@ -32,7 +32,7 @@ defmodule BaserowEx.User.TokenAuthTest do
     end
 
     test "failure: receives an error when gives wrong params" do
-      assert {:error, :invalid_email} == TokenAuth.call("teste", "password", [])
+      assert {:error, :invalid_email} == TokenAuth.call("test", "password", [])
     end
 
     test "failure: receives an error when creds is invalid" do
